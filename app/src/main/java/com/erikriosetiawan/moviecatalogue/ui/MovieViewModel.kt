@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.erikriosetiawan.moviecatalogue.models.Movie
 import com.erikriosetiawan.moviecatalogue.models.MovieResponse
 import com.erikriosetiawan.moviecatalogue.network.NetworkConfig
-import com.erikriosetiawan.moviecatalogue.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +14,8 @@ class MovieViewModel : ViewModel() {
 
     private var movies = MutableLiveData<List<Movie>>()
     private var isFailed = MutableLiveData<Boolean>()
+
+    private val LOG_TAG = MovieViewModel::class.java.simpleName
 
     init {
         setMovies()
@@ -31,9 +32,8 @@ class MovieViewModel : ViewModel() {
             }
 
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                isFailed.value = false
-
                 if (response.isSuccessful) {
+                    isFailed.value = false
                     movies.value = response.body()?.movies
                     Log.d(LOG_TAG, "Fetch data success with response code ${response.code()}")
                 } else isFailed.value = true
@@ -47,7 +47,6 @@ class MovieViewModel : ViewModel() {
     }
 
     fun getIsFailed(): MutableLiveData<Boolean> {
-        isFailed.value = true
         return isFailed
     }
 }

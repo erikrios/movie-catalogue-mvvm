@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.erikriosetiawan.moviecatalogue.R
 import com.erikriosetiawan.moviecatalogue.databinding.FragmentMovieBinding
 import com.erikriosetiawan.moviecatalogue.models.Movie
-import com.erikriosetiawan.moviecatalogue.utils.LOG_TAG
 import com.erikriosetiawan.moviecatalogue.utils.MovieAdapter
 import kotlinx.android.synthetic.main.fragment_movie.*
 
@@ -26,6 +25,8 @@ class MovieFragment : Fragment() {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: FragmentMovieBinding
+
+    private val LOG_TAG = MovieFragment::class.java.simpleName
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +46,6 @@ class MovieFragment : Fragment() {
         viewModel.getIsFailed().observe(this, Observer {
             if (it) {
                 binding.progressBarMovie.visibility = View.GONE
-                binding.noInternetConnection.visibility = View.VISIBLE
                 Log.d(LOG_TAG, "Failed to fetch data")
             }
         })

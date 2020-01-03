@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="movie">Film</string>
+    <string name="tv_show">Acara Tv</string>
+    <string name="no_internet">Tidak ada koneksi internet</string>
+    <string name="change_language">Ubah Bahasa</string>
+</resources>

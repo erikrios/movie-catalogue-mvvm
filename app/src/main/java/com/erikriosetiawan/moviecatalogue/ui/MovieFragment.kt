@@ -15,7 +15,6 @@ import com.erikriosetiawan.moviecatalogue.R
 import com.erikriosetiawan.moviecatalogue.databinding.FragmentMovieBinding
 import com.erikriosetiawan.moviecatalogue.models.Movie
 import com.erikriosetiawan.moviecatalogue.utils.MovieAdapter
-import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
 
@@ -43,9 +42,8 @@ class MovieFragment : Fragment() {
         if (savedInstanceState != null)
             isEmpty = savedInstanceState.getBoolean("data")
 
-
         if (isEmpty)
-            progressBarMovie.visibility = View.VISIBLE
+            binding.progressBarMovie.visibility = View.VISIBLE
 
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
 

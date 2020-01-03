@@ -43,12 +43,9 @@ class MovieFragment : Fragment() {
 
         })
         viewModel.getMovies().observe(this, Observer {
-//            movies.addAll(it)
-//            Log.d("TES123", it[0].title)
+            movies.addAll(it)
+            setRecyclerView()
         })
-        // TODO: Use the ViewModel
-//        setData()
-        setRecyclerView()
     }
 
     private fun setRecyclerView() {

@@ -45,6 +45,7 @@ class MovieFragment : Fragment() {
         viewModel.getIsFailed().observe(this, Observer {
             if (it) {
                 binding.progressBarMovie.visibility = View.GONE
+                binding.noInternetConnection.visibility = View.VISIBLE
                 Log.d(LOG_TAG, "Failed to fetch data")
             }
         })

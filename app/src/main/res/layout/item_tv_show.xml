@@ -35,6 +35,7 @@
                 android:layout_alignParentTop="true"
                 android:contentDescription="@string/tv_show"
                 android:scaleType="fitXY"
+                android:src="@drawable/load_image_place_holder"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView

@@ -1,6 +1,10 @@
 package com.erikriosetiawan.moviecatalogue.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -35,5 +39,20 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return false
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_change_language -> {
+                val changeLanguageIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(changeLanguageIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

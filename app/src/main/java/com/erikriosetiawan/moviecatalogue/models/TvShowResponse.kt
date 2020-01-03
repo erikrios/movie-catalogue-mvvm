@@ -14,5 +14,5 @@ data class TvShowResponse(
     var totalPages: Int,
 
     @SerializedName("results")
-    var results: Int
+    var tvShows: List<TvShow>
 )

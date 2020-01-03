@@ -42,11 +42,9 @@ class MovieViewModel : ViewModel() {
         })
     }
 
-    fun getMovies(): MutableLiveData<List<Movie>> {
-        return movies
-    }
+    fun getMovies(): MutableLiveData<List<Movie>> = movies
 
-    fun getIsFailed(): MutableLiveData<Boolean> {
-        return isFailed
-    }
+
+    fun getIsFailed(): MutableLiveData<Boolean> = isFailed
+
 }

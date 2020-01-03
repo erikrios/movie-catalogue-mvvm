@@ -15,6 +15,7 @@ import com.erikriosetiawan.moviecatalogue.R
 import com.erikriosetiawan.moviecatalogue.databinding.FragmentMovieBinding
 import com.erikriosetiawan.moviecatalogue.models.Movie
 import com.erikriosetiawan.moviecatalogue.utils.MovieAdapter
+import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
 
@@ -24,7 +25,6 @@ class MovieFragment : Fragment() {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: FragmentMovieBinding
-    private val movies: MutableList<Movie> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +36,26 @@ class MovieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        progressBarMovie.visibility = View.VISIBLE
+
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
 
         viewModel.getIsFailed().observe(this, Observer {
-            if (it) print("Failed to fetch data") else print("Success to fetch data")
-
+            if (it) {
+                binding.progressBarMovie.visibility = View.GONE
+                Log.d("TES123", "Failed to fetch data")
+            }
         })
         viewModel.getMovies().observe(this, Observer {
-            movies.addAll(it)
-            setRecyclerView()
+            binding.progressBarMovie.visibility = View.GONE
+            setRecyclerView(it)
         })
     }
 
-    private fun setRecyclerView() {
-        binding.recyclerViewMovie.adapter = MovieAdapter(binding.root.context, movies)
+    private fun setRecyclerView(movies: List<Movie>) {
+        binding.recyclerViewMovie.adapter =
+            MovieAdapter(binding.root.context, movies as MutableList<Movie>)
         binding.recyclerViewMovie.layoutManager =
             LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
     }

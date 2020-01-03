@@ -19,6 +19,8 @@ class MovieViewModel : ViewModel() {
         setMovies()
     }
 
+    private val LOG_TAG = MovieViewModel::class.java.simpleName
+
     private fun setMovies() {
         isFailed.value = true
 
@@ -26,15 +28,15 @@ class MovieViewModel : ViewModel() {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 isFailed.value = true
                 movies.value = null
-                Log.d("TES123", t.localizedMessage)
+                Log.d(LOG_TAG, "Failed to fetch data because ${t.localizedMessage}")
             }
 
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 isFailed.value = false
 
                 if (response.isSuccessful) {
-                    Log.d("TES123", "Sukses")
                     movies.value = response.body()?.movies
+                    Log.d(LOG_TAG, "Fetch data success with response code ${response.code()}")
                 } else isFailed.value = true
             }
 

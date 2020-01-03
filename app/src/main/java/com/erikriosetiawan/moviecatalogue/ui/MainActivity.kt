@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
             var fragment: Fragment? = null
 
             when (it.itemId) {
-                R.id.item_movie -> fragment = MovieFragment()
-                R.id.item_tv_show -> fragment = TvShowFragment()
+                R.id.item_movie -> fragment = MovieFragment.newInstance()
+                R.id.item_tv_show -> fragment = TvShowFragment.newInstance()
             }
             return@setOnNavigationItemSelectedListener loadFragment(fragment)
         }

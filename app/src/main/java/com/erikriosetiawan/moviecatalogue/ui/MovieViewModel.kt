@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.erikriosetiawan.moviecatalogue.models.Movie
 import com.erikriosetiawan.moviecatalogue.models.MovieResponse
 import com.erikriosetiawan.moviecatalogue.network.NetworkConfig
+import com.erikriosetiawan.moviecatalogue.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,8 +19,6 @@ class MovieViewModel : ViewModel() {
     init {
         setMovies()
     }
-
-    private val LOG_TAG = MovieViewModel::class.java.simpleName
 
     private fun setMovies() {
         isFailed.value = true

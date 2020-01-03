@@ -28,6 +28,7 @@
             android:layout_height="194.6dp">
 
             <ImageView
+                android:background="@drawable/load_image_place_holder"
                 android:id="@+id/poster"
                 android:layout_width="129.5dp"
                 android:layout_height="match_parent"

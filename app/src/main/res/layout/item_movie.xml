@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:background="@drawable/load_image_place_holder"
                 android:contentDescription="@string/movie"
                 android:scaleType="fitXY"
                 android:src="@drawable/load_image_place_holder"

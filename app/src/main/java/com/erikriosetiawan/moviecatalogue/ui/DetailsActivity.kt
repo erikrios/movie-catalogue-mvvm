@@ -32,15 +32,14 @@ class DetailsActivity : AppCompatActivity() {
     private fun getDataIntent() {
         if (getDataKey() == MOVIE_KEY) {
             movie = intent.getParcelableExtra(MOVIE_KEY) as Movie
-            Picasso.get().load("https://image.tmdb.org/t/p/w185${movie.posterPath}")
+            Picasso.get().load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .into(binding.poster)
             binding.title.text = movie.title
             binding.firstAirDate.text = movie.releaseDate
             binding.overview.text = movie.overview
-
         } else {
             tvShow = intent.getParcelableExtra(TV_SHOW_KEY) as TvShow
-            Picasso.get().load("https://image.tmdb.org/t/p/w185${tvShow.posterPath}")
+            Picasso.get().load("https://image.tmdb.org/t/p/w500${tvShow.posterPath}")
                 .into(binding.poster)
             binding.title.text = tvShow.title
             binding.firstAirDate.text = tvShow.firstAirDate

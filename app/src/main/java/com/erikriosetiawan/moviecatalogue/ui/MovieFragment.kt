@@ -25,6 +25,7 @@ class MovieFragment : Fragment() {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: FragmentMovieBinding
+    private var isEmpty: Boolean = true
 
     private val LOG_TAG = MovieFragment::class.java.simpleName
 
@@ -39,19 +40,24 @@ class MovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        progressBarMovie.visibility = View.VISIBLE
+        if (savedInstanceState != null)
+            isEmpty = savedInstanceState.getBoolean("data")
+
+
+        if (isEmpty)
+            progressBarMovie.visibility = View.VISIBLE
 
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
 
         viewModel.getIsFailed().observe(this, Observer {
             if (it) {
-                binding.progressBarMovie.visibility = View.GONE
                 Log.d(LOG_TAG, "Failed to fetch data")
             }
         })
         viewModel.getMovies().observe(this, Observer {
             binding.progressBarMovie.visibility = View.GONE
             setRecyclerView(it)
+            isEmpty = false
             Log.d(LOG_TAG, "Success to fetch data")
         })
     }
@@ -61,5 +67,10 @@ class MovieFragment : Fragment() {
             MovieAdapter(binding.root.context, movies as MutableList<Movie>)
         binding.recyclerViewMovie.layoutManager =
             LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("data", isEmpty)
     }
 }

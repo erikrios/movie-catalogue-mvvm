@@ -25,7 +25,7 @@ class MovieAdapter(private val context: Context, private val movies: MutableList
         }
     }
 
-    inner class ViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindViews(movie: Movie, listener: (Movie) -> Unit) {
             binding.movie = movie

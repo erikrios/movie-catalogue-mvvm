@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.erikriosetiawan.moviecatalogue.R
 import com.erikriosetiawan.moviecatalogue.databinding.FragmentMovieBinding
 import com.erikriosetiawan.moviecatalogue.models.Movie
+import com.erikriosetiawan.moviecatalogue.utils.LOG_TAG
 import com.erikriosetiawan.moviecatalogue.utils.MovieAdapter
 import kotlinx.android.synthetic.main.fragment_movie.*
 
@@ -44,12 +45,13 @@ class MovieFragment : Fragment() {
         viewModel.getIsFailed().observe(this, Observer {
             if (it) {
                 binding.progressBarMovie.visibility = View.GONE
-                Log.d("TES123", "Failed to fetch data")
+                Log.d(LOG_TAG, "Failed to fetch data")
             }
         })
         viewModel.getMovies().observe(this, Observer {
             binding.progressBarMovie.visibility = View.GONE
             setRecyclerView(it)
+            Log.d(LOG_TAG, "Success to fetch data")
         })
     }
 

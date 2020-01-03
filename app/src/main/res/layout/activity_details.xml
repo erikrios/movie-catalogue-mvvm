@@ -3,14 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="tvShow"
-            type="com.erikriosetiawan.moviecatalogue.models.TvShow" />
-
-    </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,7 +31,6 @@
                 android:layout_marginTop="@dimen/layout_margin"
                 android:fontFamily="casual"
                 android:gravity="center"
-                android:text="@={tvShow.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +45,6 @@
                 android:layout_marginStart="@dimen/layout_margin"
                 android:background="#80000000"
                 android:fontFamily="monospace"
-                android:text="@={tvShow.firstAirDate}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/poster"
@@ -68,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/layout_margin"
                 android:fontFamily="cursive"
-                android:text="@={tvShow.overview}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

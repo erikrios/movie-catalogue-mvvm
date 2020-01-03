@@ -1,11 +1,13 @@
 package com.erikriosetiawan.moviecatalogue.utils
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.erikriosetiawan.moviecatalogue.databinding.ItemMovieBinding
 import com.erikriosetiawan.moviecatalogue.models.Movie
+import com.erikriosetiawan.moviecatalogue.ui.DetailsActivity
 import com.squareup.picasso.Picasso
 
 class MovieAdapter(private val context: Context, private val movies: MutableList<Movie>) :
@@ -21,7 +23,10 @@ class MovieAdapter(private val context: Context, private val movies: MutableList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindViews(movies[position]) {
-            // Intent code here
+            val dataIntent = Intent(context, DetailsActivity::class.java)
+            dataIntent.putExtra(DetailsActivity.DATA_KEY, DetailsActivity.MOVIE_KEY)
+            dataIntent.putExtra(DetailsActivity.MOVIE_KEY, it)
+            context.startActivity(dataIntent)
         }
     }
 

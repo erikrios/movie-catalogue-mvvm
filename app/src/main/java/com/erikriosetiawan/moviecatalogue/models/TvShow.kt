@@ -1,7 +1,10 @@
 package com.erikriosetiawan.moviecatalogue.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TvShow(
 
     @SerializedName("popularity")
@@ -24,4 +27,4 @@ data class TvShow(
 
     @SerializedName("first_air_date")
     var firstAirDate: String
-)
+) : Parcelable

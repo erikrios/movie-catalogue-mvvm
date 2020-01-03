@@ -1,11 +1,13 @@
 package com.erikriosetiawan.moviecatalogue.utils
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.erikriosetiawan.moviecatalogue.databinding.ItemTvShowBinding
 import com.erikriosetiawan.moviecatalogue.models.TvShow
+import com.erikriosetiawan.moviecatalogue.ui.DetailsActivity
 import com.squareup.picasso.Picasso
 
 class TvShowAdapter(private val context: Context, private val tvShows: MutableList<TvShow>) :
@@ -21,7 +23,10 @@ class TvShowAdapter(private val context: Context, private val tvShows: MutableLi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindViews(tvShows[position]) {
-            // Intent code here
+            val dataIntent = Intent(context, DetailsActivity::class.java)
+            dataIntent.putExtra(DetailsActivity.DATA_KEY, DetailsActivity.TV_SHOW_KEY)
+            dataIntent.putExtra(DetailsActivity.TV_SHOW_KEY, it)
+            context.startActivity(dataIntent)
         }
     }
 

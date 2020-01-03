@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="tvShow"
+            type="com.erikriosetiawan.moviecatalogue.models.TvShow" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:contentPadding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="194.6dp">
+
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="129.5dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/tv_show"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/layout_margin"
+                android:layout_toEndOf="@id/poster"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:text="@={tvShow.title}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/releaseDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/layout_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toStartOf="@id/title"
+                android:layout_toEndOf="@id/poster"
+                android:ellipsize="end"
+                android:text="@={tvShow.firstAirDate}"
+                android:textSize="15sp"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/releaseDate"
+                android:layout_alignEnd="@id/poster"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/layout_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/poster"
+                android:ellipsize="end"
+                android:text="@={tvShow.overview}"
+                tools:text="@tools:sample/lorem/random" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

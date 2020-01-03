@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Movie(
 
     @SerializedName("popularity")
-    var popularity: Int,
+    var popularity: Double,
 
     @SerializedName("vote_count")
     var voteCount: Int,

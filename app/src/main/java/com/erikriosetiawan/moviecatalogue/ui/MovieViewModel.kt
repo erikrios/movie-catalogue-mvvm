@@ -1,7 +1,9 @@
 package com.erikriosetiawan.moviecatalogue.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.erikriosetiawan.moviecatalogue.models.Movie
 import com.erikriosetiawan.moviecatalogue.models.MovieResponse
 import com.erikriosetiawan.moviecatalogue.network.NetworkConfig
 import retrofit2.Call
@@ -10,7 +12,7 @@ import retrofit2.Response
 
 class MovieViewModel : ViewModel() {
 
-    private var movies = MutableLiveData<MovieResponse>()
+    private var movies = MutableLiveData<List<Movie>>()
     private var isFailed = MutableLiveData<Boolean>()
 
     init {
@@ -24,19 +26,22 @@ class MovieViewModel : ViewModel() {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 isFailed.value = true
                 movies.value = null
+                Log.d("TES123", t.localizedMessage)
             }
 
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 isFailed.value = false
 
-                if (response.isSuccessful) movies.value = response.body()
-                else isFailed.value = true
+                if (response.isSuccessful) {
+                    Log.d("TES123", "Sukses")
+                    movies.value = response.body()?.movies
+                } else isFailed.value = true
             }
 
         })
     }
 
-    fun getMovies(): MutableLiveData<MovieResponse> {
+    fun getMovies(): MutableLiveData<List<Movie>> {
         return movies
     }
 

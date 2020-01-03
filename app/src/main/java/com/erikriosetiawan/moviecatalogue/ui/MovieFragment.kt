@@ -1,11 +1,13 @@
 package com.erikriosetiawan.moviecatalogue.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,8 +37,17 @@ class MovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+
+        viewModel.getIsFailed().observe(this, Observer {
+            if (it) print("Failed to fetch data") else print("Success to fetch data")
+
+        })
+        viewModel.getMovies().observe(this, Observer {
+//            movies.addAll(it)
+//            Log.d("TES123", it[0].title)
+        })
         // TODO: Use the ViewModel
-        setData()
+//        setData()
         setRecyclerView()
     }
 
@@ -44,21 +55,5 @@ class MovieFragment : Fragment() {
         binding.recyclerViewMovie.adapter = MovieAdapter(binding.root.context, movies)
         binding.recyclerViewMovie.layoutManager =
             LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
-    }
-
-    private fun setData() {
-        for (i in 0..10) {
-            movies.add(
-                Movie(
-                    i,
-                    i,
-                    "/jyw8VKYEiM1UDzPB7NsisUgBeJ8.jpg",
-                    "Movie Title $i",
-                    4.5 + i.toDouble(),
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                    "2019-10-02"
-                )
-            )
-        }
     }
 }

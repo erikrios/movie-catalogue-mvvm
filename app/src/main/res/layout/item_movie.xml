@@ -38,6 +38,7 @@
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
+                android:fontFamily="sans-serif-medium"
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
